@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-npm-shrinkwrap/node_modules/npm-shrinkwrap/trim-and-sort-shrinkwrap.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-npm-shrinkwrap">npmtest-npm-shrinkwrap (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-npm-shrinkwrap/node_modules/npm-shrinkwrap/trim-and-sort-shrinkwrap.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">17.82% <small>(18 / 101)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 57)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 15)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">17.82% <small>(18 / 101)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-npm-shrinkwrap/node_modules/npm-shrinkwrap/</a> &#187; trim-and-sort-shrinkwrap.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var fs = require('graceful-fs');
+var path = require('path');
+var url = require('url');
+var safeJsonParse = require('safe-json-parse');
+var parallel = require('run-parallel');
+var sortedObject = require('sorted-object');
+var readJSON = require('./read-json');
+&nbsp;
+var errors = require('./errors.js');
+&nbsp;
+module.exports = trimFrom;
+&nbsp;
+// set keys in an order
+<span class="fstat-no" title="function not covered" >function sortedKeys(obj, orderedKeys) {</span>
+<span class="cstat-no" title="statement not covered" >    var keys = Object.keys(obj).sort();</span>
+<span class="cstat-no" title="statement not covered" >    var fresh = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    orderedKeys.forEach(<span class="fstat-no" title="function not covered" >function (key) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (keys.indexOf(key) === -1) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        fresh[key] = obj[key];</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    keys.forEach(<span class="fstat-no" title="function not covered" >function (key) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (orderedKeys.indexOf(key) !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        fresh[key] = obj[key];</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return fresh;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function recursiveSorted(json) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!json) {</span>
+<span class="cstat-no" title="statement not covered" >        return json;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var deps = json.dependencies;</span>
+<span class="cstat-no" title="statement not covered" >    if (typeof deps === 'object' &amp;&amp; deps !== null) {</span>
+<span class="cstat-no" title="statement not covered" >        json.dependencies = Object.keys(deps)</span>
+            .reduce(<span class="fstat-no" title="function not covered" >function (acc, key) {</span>
+<span class="cstat-no" title="statement not covered" >                acc[key] = recursiveSorted(deps[key]);</span>
+<span class="cstat-no" title="statement not covered" >                return acc;</span>
+            }, {});
+<span class="cstat-no" title="statement not covered" >        json.dependencies = sortedObject(json.dependencies);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return sortedKeys(json, [</span>
+        'name',
+        'version',
+        'from',
+        'resolved',
+        'npm-shrinkwrap-version',
+        'node-version',
+        'dependencies'
+    ]);
+&nbsp;
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function trimFrom(opts, callback) {</span>
+<span class="cstat-no" title="statement not covered" >    if (typeof opts === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >        opts = { dirname: opts };</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var shrinkwrapFile = path.join(opts.dirname, 'npm-shrinkwrap.json');</span>
+<span class="cstat-no" title="statement not covered" >    var registries = opts.registries || ['registry.npmjs.org'];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    parallel([</span>
+        fixShrinkwrap,
+        fixPackage.bind(null, opts.dirname)
+    ], callback);
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function fixShrinkwrap(callback) {</span>
+<span class="cstat-no" title="statement not covered" >        fs.readFile(shrinkwrapFile, 'utf8', <span class="fstat-no" title="function not covered" >function (err, file) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                return callback(err);</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (file === '') {</span>
+<span class="cstat-no" title="statement not covered" >                return callback(errors.EmptyFile());</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            safeJsonParse(file, <span class="fstat-no" title="function not covered" >function (err, json) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    return callback(err);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                json = recursiveSorted(json);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                json = replaceFields(json, replacer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                fs.writeFile(shrinkwrapFile,</span>
+                    JSON.stringify(json, null, 2) + '\n', callback);
+            });
+        });
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function replaceFields(json, replacer, name) {</span>
+<span class="cstat-no" title="statement not covered" >        name = name || 'root';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (json.from) {</span>
+<span class="cstat-no" title="statement not covered" >            json.from = replacer.call(json,</span>
+                'from', json.from, name);
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (json.dependencies) {</span>
+<span class="cstat-no" title="statement not covered" >            Object.keys(json.dependencies)</span>
+                .forEach(recurse);
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return json;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function recurse(name) {</span>
+<span class="cstat-no" title="statement not covered" >            json.dependencies[name] = replaceFields(</span>
+                json.dependencies[name],
+                replacer,
+                name);
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function fixFromField(opts) {</span>
+<span class="cstat-no" title="statement not covered" >        var shaIsm = opts.fromUri.hash &amp;&amp;</span>
+            opts.fromUri.hash.slice(1);
+&nbsp;
+        // from does not have shaIsm. bail early
+<span class="cstat-no" title="statement not covered" >        if (!shaIsm) {</span>
+<span class="cstat-no" title="statement not covered" >            return opts.name + '@' + opts.fromValue;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var resolvedUri = url.parse(opts.resolvedValue);</span>
+<span class="cstat-no" title="statement not covered" >        var resolveShaism = resolvedUri.hash &amp;&amp;</span>
+            resolvedUri.hash.slice(1);
+&nbsp;
+        // resolved does not have shaIsm. bail early
+<span class="cstat-no" title="statement not covered" >        if (!resolveShaism) {</span>
+<span class="cstat-no" title="statement not covered" >            return opts.name + '@' + opts.fromValue;</span>
+        }
+&nbsp;
+        // replace the from shaIsm with the resolved shaIsm
+<span class="cstat-no" title="statement not covered" >        if (shaIsm !== resolveShaism) {</span>
+<span class="cstat-no" title="statement not covered" >            var pathname = opts.fromUri.pathname;</span>
+            // normalize git+ssh links with a ':' after the host instead of a '/'
+<span class="cstat-no" title="statement not covered" >            if (pathname[1] === ':') {</span>
+<span class="cstat-no" title="statement not covered" >                pathname = pathname[0] + pathname.slice(2);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var newValue = url.format({</span>
+                protocol: opts.fromUri.protocol,
+                slashes: opts.fromUri.slashes,
+                auth: opts.fromUri.auth,
+                host: opts.fromUri.host,
+                pathname: pathname,
+                hash: resolveShaism
+            });
+<span class="cstat-no" title="statement not covered" >            return opts.name + '@' + newValue;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return opts.name + '@' + opts.fromValue;</span>
+    }
+&nbsp;
+    /* trims the `from` field from `npm-shrinkwrap.json` files.
+&nbsp;
+        The `from` field is likely to change because different npm
+            clients do different things and general non determinism.
+&nbsp;
+        The `from` field is not really important since the `resolved`
+            and `version` fields are mostly used.
+&nbsp;
+        The only situations in which `from` is used is non npm links
+            (i.e. git, git+ssh and https tarbal links) and situations
+            where there is no `resolved` field.
+    */
+<span class="fstat-no" title="function not covered" >    function replacer(key, value, name) {</span>
+<span class="cstat-no" title="statement not covered" >        if (key !== 'from') {</span>
+<span class="cstat-no" title="statement not covered" >            return value;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var resolved = this.resolved;</span>
+&nbsp;
+        // if this dependency has no `resolved` field then it's not
+        // safe to remove the `from` field since `npm install` will
+        // use it.
+<span class="cstat-no" title="statement not covered" >        if (!resolved) {</span>
+<span class="cstat-no" title="statement not covered" >            return value;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var uri = url.parse(value);</span>
+&nbsp;
+        // if it's a `http:` link to registry its safe
+        // to remove as `from` is not really used
+<span class="cstat-no" title="statement not covered" >        if ((uri.protocol === 'http:' || uri.protocol === 'https:') &amp;&amp;</span>
+            registries.indexOf(uri.host) !== -1
+        ) {
+<span class="cstat-no" title="statement not covered" >            return undefined;</span>
+        // if it's any other link, like `git`, `git+ssh` or a http
+        // link to an arbitrary tarball then we cant remove it
+        } else <span class="cstat-no" title="statement not covered" >if (uri.protocol) {</span>
+            // for resolve branches &amp; shaisms to commit shas
+            // we should always have `from` contain a git sha
+            // because that's consistent
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return fixFromField({</span>
+                fromUri: uri,
+                name: name,
+                fromValue: value,
+                resolvedValue: resolved
+            });
+        }
+&nbsp;
+        // otherwise the `value` is in the format `name@semverish`
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var parts = value.split('@');</span>
+<span class="cstat-no" title="statement not covered" >        var rest = parts.slice(1).join('@');</span>
+&nbsp;
+        // parse the `semverish` part of the `from` field value.
+<span class="cstat-no" title="statement not covered" >        var secondUri = url.parse(rest);</span>
+&nbsp;
+        // if it's an uri instead of a `semverish` then it's not
+        // safe to remove the `from` field
+        // However if it is NOT an uri then its safe to remove
+<span class="cstat-no" title="statement not covered" >        if (!secondUri.protocol) {</span>
+<span class="cstat-no" title="statement not covered" >            return undefined;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return fixFromField({</span>
+            fromUri: secondUri,
+            fromValue: rest,
+            name: name,
+            resolvedValue: resolved
+        });
+    }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function fixPackage(dirname, callback) {</span>
+<span class="cstat-no" title="statement not covered" >    var packageJsonFile = path.join(dirname, 'package.json');</span>
+<span class="cstat-no" title="statement not covered" >    readJSON(packageJsonFile, <span class="fstat-no" title="function not covered" >function (err, json) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+<span class="cstat-no" title="statement not covered" >            return callback(err);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (json.dependencies) {</span>
+<span class="cstat-no" title="statement not covered" >            json.dependencies = sortedObject(json.dependencies);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (json.devDependencies) {</span>
+<span class="cstat-no" title="statement not covered" >            json.devDependencies = sortedObject(json.devDependencies);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var data = JSON.stringify(json, null, 2) + '\n';</span>
+<span class="cstat-no" title="statement not covered" >        fs.writeFile(packageJsonFile, data, callback);</span>
+    });
+}
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Wed Apr 19 2017 10:12:14 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
