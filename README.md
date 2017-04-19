@@ -1,6 +1,6 @@
 # npmtest-npm-shrinkwrap
 
-#### test coverage for  [npm-shrinkwrap (v6.0.2)](https://github.com/uber/npm-shrinkwrap)  [![npm package](https://img.shields.io/npm/v/npmtest-npm-shrinkwrap.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-npm-shrinkwrap) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-npm-shrinkwrap.svg)](https://travis-ci.org/npmtest/node-npmtest-npm-shrinkwrap)
+#### basic test coverage for  [npm-shrinkwrap (v6.0.2)](https://github.com/uber/npm-shrinkwrap)  [![npm package](https://img.shields.io/npm/v/npmtest-npm-shrinkwrap.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-npm-shrinkwrap) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-npm-shrinkwrap.svg)](https://travis-ci.org/npmtest/node-npmtest-npm-shrinkwrap)
 
 #### A consistent shrinkwrap tool
 
