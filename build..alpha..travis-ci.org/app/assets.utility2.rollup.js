@@ -10148,7 +10148,7 @@ local.assetsDict['/assets.readmeCustomOrg.npmtest.template.md'] = '\
 # npmtest-{{env.npm_package_name}} \
 \n\
 \n\
-#### test coverage for \
+#### basic test coverage for \
 {{#if env.npm_package_homepage}} \
 [{{env.npm_package_name}} (v{{env.npm_package_version}})]({{env.npm_package_homepage}}) \
 {{#unless env.npm_package_homepage}} \
