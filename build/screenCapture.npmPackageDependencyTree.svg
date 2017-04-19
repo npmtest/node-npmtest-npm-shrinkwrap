@@ -10,14 +10,14 @@
 <tspan x="10" y="122">├── string-template@0.2.1</tspan>
 <tspan x="10" y="138">├── graceful-fs@4.1.11</tspan>
 <tspan x="10" y="154">├── safe-json-parse@2.0.0</tspan>
-<tspan x="10" y="170">├── run-parallel@1.1.6</tspan>
-<tspan x="10" y="186">├── run-series@1.1.4</tspan>
+<tspan x="10" y="170">├── run-series@1.1.4</tspan>
+<tspan x="10" y="186">├── run-parallel@1.1.6</tspan>
 <tspan x="10" y="202">├── minimist@1.2.0</tspan>
 <tspan x="10" y="218">├── semver@4.3.6</tspan>
 <tspan x="10" y="234">├── error@4.4.0 (camelize@1.0.0, xtend@4.0.1)</tspan>
 <tspan x="10" y="250">├── rimraf@2.6.1 (glob@7.1.1)</tspan>
 <tspan x="10" y="266">├── msee@0.1.2 (marked@0.3.6, chalk@0.4.0, nopt@2.1.2, xtend@2.1.2, cardinal@0.5.0)</tspan>
-<tspan x="10" y="282">├── json-diff@0.3.1 (difflib@0.2.4, dreamopt@0.6.0, cli-color@0.1.7)</tspan>
+<tspan x="10" y="282">├── json-diff@0.3.1 (dreamopt@0.6.0, difflib@0.2.4, cli-color@0.1.7)</tspan>
 <tspan x="10" y="298">└── npm@2.15.12</tspan>
 </text>
 </svg>
